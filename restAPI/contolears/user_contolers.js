@@ -1,11 +1,11 @@
 const path = require('path');
 const users = require("../modals/user_modals");
 
-exports.getUser = (req, res) => {
+const getUser = (req, res) => {
   res.sendfile(path.join(__dirname + '/../views/index.html'));
 };
 
-exports.postUser = (req, res) => {
+const postUser = (req, res) => {
   const callFormat = req.body;
   // const name = callFormat.name;
   // const age = Number(callFormat.age);
@@ -21,7 +21,7 @@ exports.postUser = (req, res) => {
   console.log(req.path);
 };
 
-// module.exports = {
-//   getUser,
-//   postUser,
-// };
+module.exports = {
+  getUser,
+  postUser,
+};
