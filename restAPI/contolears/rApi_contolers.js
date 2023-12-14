@@ -1,20 +1,25 @@
 const { v4: uuidv4 } = require('uuid');
-const data = require("../modals/rApi_modals")
+let data = require("../modals/rApi_modals")
 
+
+//get
 const getrapi = (req, res) => {
-    res.status(200).json({ rApiData })
+    res.status(200).json({ data })
 };
 
 
+//create {post}
 const createrapi = (req, res) => {
-
     const callFormat = req.body;
-    const newrapi = {
+    const newdata = {
         id: uuidv4(),
         email: callFormat.email,
         password: callFormat.password,
+        x : {
+            xx: callFormat.xx,
+        }
     }
-    data.push(newrapi);
+    data.push(newdata);
     res.status(200).json({
         success: true,
         messege: "success",
@@ -22,6 +27,27 @@ const createrapi = (req, res) => {
     })
 }
 
+// update {put} 
+const updaterapi = (req, res)=>{
+    const rootid = req.params.id;
+    const {email, password} = req.body;
+    data.filter((data)=>data.id===rootid).map((data)=>{
+        data.email = email;
+        data.password = password;
+    });
+
+
+    res.status(200).json(data)
+} 
+
+
+// delete {delete} 
+const deleterapi = (req, res)=>{
+    const rootid = req.params.id;
+    let datafilter = data.filter((data)=>data.id !== rootid);
+    data = datafilter
+    res.status(200).json({data});
+}
 
 
 
@@ -29,4 +55,6 @@ const createrapi = (req, res) => {
 module.exports = {
     getrapi,
     createrapi,
+    updaterapi,
+    deleterapi,
 }
