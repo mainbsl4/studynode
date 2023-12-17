@@ -6,6 +6,9 @@ const userRouter = require('./routes/user.router');
 
 app.use(cors());
 
+// Database
+require("./config/db");
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 

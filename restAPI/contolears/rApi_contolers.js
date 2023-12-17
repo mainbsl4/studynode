@@ -15,7 +15,7 @@ const createrapi = (req, res) => {
         id: uuidv4(),
         email: callFormat.email,
         password: callFormat.password,
-        x : {
+        x: {
             xx: callFormat.xx,
         }
     }
@@ -28,25 +28,25 @@ const createrapi = (req, res) => {
 }
 
 // update {put} 
-const updaterapi = (req, res)=>{
+const updaterapi = (req, res) => {
     const rootid = req.params.id;
-    const {email, password} = req.body;
-    data.filter((data)=>data.id===rootid).map((data)=>{
+    const { email, password } = req.body;
+    data.filter((data) => data.id === rootid).map((data) => {
         data.email = email;
         data.password = password;
     });
 
 
     res.status(200).json(data)
-} 
+}
 
 
 // delete {delete} 
-const deleterapi = (req, res)=>{
+const deleterapi = (req, res) => {
     const rootid = req.params.id;
-    let datafilter = data.filter((data)=>data.id !== rootid);
+    let datafilter = data.filter((data) => data.id !== rootid);
     data = datafilter
-    res.status(200).json({data});
+    res.status(200).json({ data });
 }
 
 
